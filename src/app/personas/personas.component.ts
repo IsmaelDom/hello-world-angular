@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-personas',
-  templateUrl: './personas.component.html',
-  styleUrls: ['./personas.component.css']
+    selector: 'app-personas',
+    templateUrl: './personas.component.html',
+    //styleUrls: ['./personas.component.css'] 
+    styles:[`
+        h1{
+            color:blue;
+        }
+    `] 
 })
-export class PersonasComponent implements OnInit {
+export class PersonasComponent{
+    deshabilitar = false;
+    mensaje = 'No se ha agregado ninguna persona';
+    titulo = 'Ingeniero';
 
-  constructor() { }
+    agregarPersona(){
+        this.mensaje = 'Persona agregada';
+    }
 
-  ngOnInit(): void {
-  }
-
+    /*modificarTitulo(event: Event){
+        this.titulo = (<HTMLInputElement>event.target).value;
+    }*/
 }

@@ -1,1 +1,18 @@
-<p>personas works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Listado de Personas</h1>
+      <!-- <app-persona></app-persona> -->
+      <button class="btn btn-primary" [disabled]="deshabilitar"
+        (click) = 'agregarPersona()'>Agregar persona</button>
+      <br/>
+      <p>{{mensaje}}</p>
+      <label for="">Titulo persona</label>
+      <!-- <input type="text" name="" id="" class="form-control"
+        (input) = "modificarTitulo($event)">
+        {{titulo}} -->
+        <input type="text" class="form-control" [(ngModel)] = "titulo">
+        {{titulo}}
+    </div>
+  </div>
+</div>
