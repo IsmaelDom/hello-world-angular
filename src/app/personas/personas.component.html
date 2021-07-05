@@ -2,20 +2,58 @@
   <div class="row">
     <div class="col">
       <h1>Listado de Personas</h1>
+      <hr />
       <!-- <app-persona></app-persona> -->
-      <button class="btn btn-primary" [disabled]="deshabilitar"
-        (click) = 'agregarPersona()'>Agregar persona</button>
-      <p *ngIf="mostrar; else sinPersona">{{mensaje}} con el titulo de {{titulo}}</p>
+      <button
+        class="btn btn-primary"
+        [disabled]="deshabilitar"
+        (click)="agregarPersona()">
+        Agregar persona
+      </button>
+
+      <p *ngIf="mostrar; else sinPersona">
+        {{ mensaje }} con el titulo de {{ titulo }}
+      </p>
       <ng-template #sinPersona>
         <p>No se a agregado ninguna persona</p>
       </ng-template>
-      <br/>
+      <br />
       <label for="">Titulo persona</label>
       <!-- <input type="text" name="" id="" class="form-control"
         (input) = "modificarTitulo($event)">
         {{titulo}} -->
-        <input type="text" class="form-control" [(ngModel)] = "titulo">
-        {{titulo}}
+      <input type="text" class="form-control" [(ngModel)]="titulo" />
+      {{ titulo }}
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="container">
+  <form action="" class="row g-2">
+    <div class="form-group col-auto">
+      <label for="nombre" class="visually-hidden">Nombre</label>
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre"
+        class="form-control" [(ngModel)] = "nombreInput">
+    </div>
+    <div class="form-group col-auto">
+      <label for="apellido" class="visually-hidden">Apellido</label>
+      <input type="text" name="apellido" id="apellido" placeholder="Apellido"
+        class="form-control" [(ngModel)] = "apellidoInput">
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click) = "addPersona()">Agregar</button>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <hr/>
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let persona of personas; let i = index">
+        {{ i + 1 }}.-{{ persona.nombre }} {{ persona.apellido }}
+      </div>
     </div>
   </div>
 </div>
