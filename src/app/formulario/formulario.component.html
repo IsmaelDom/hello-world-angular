@@ -12,7 +12,8 @@
         <label for="apellido">Apellido</label>
       </div>
       <div class="col">
-        <button type="submit" class="btn btn-primary" (click) = "addPersona(nombreRef, apellidoRef)">Agregar</button>
+        <button type="submit" class="btn btn-primary" (click) = "addPersona()">Agregar</button><!--Usando Referencia Local con ViewChild-->
+        <!-- (click) = "addPersona(nombreRef, apellidoRef)" Para usar Referencia Local-->
       </div>
     </form>
 </div>
