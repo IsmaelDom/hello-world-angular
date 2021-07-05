@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { LoggingService } from "../LoggingService.service";
+import { PersonasService } from "../personas.service";
 import { Persona } from "./persona.model";
 
 @Component({
@@ -12,26 +13,33 @@ import { Persona } from "./persona.model";
         }
     `] 
 })
-export class PersonasComponent{
+export class PersonasComponent implements OnInit {
     deshabilitar = false;
     mensaje = '';
     titulo = 'Ingeniero';
     mostrar = false;
-    personas: Persona[] = [new Persona('Juan', 'Perez'), 
+    /*personas: Persona[] = [new Persona('Juan', 'Perez'), 
                         new Persona('Laura', 'Juarez'),
-                        new Persona('Karla', 'Lara')];
+                        new Persona('Karla', 'Lara')];//Se mueve a el servicio*/
+    personas: Persona[] =[];
 
-    constructor(private loggingService:LoggingService) {}
+    constructor(private loggingService: LoggingService,
+                private personasService: PersonasService) {}
+
+    ngOnInit(): void {
+        this.personas = this.personasService.personas;
+    }
 
     agregarPersona(){
         this.mostrar = true;
         this.mensaje = 'Persona agregada';
     }
 
-    personaAgregada(persona: Persona) {
-        this.loggingService.enviaMensajeAConsola("Se agrega al arreglo la persona: " + persona.nombre + " " + persona.apellido);
-        this.personas.push(persona);
-    }
+    /*personaAgregada(persona: Persona) {
+        //this.loggingService.enviaMensajeAConsola("Se agrega al arreglo la persona: " + persona.nombre + " " + persona.apellido);//Se mueve a el servicio
+        //this.personas.push(persona);//Se mueve a el servicio
+        this.personasService.personaAgregada(persona);//Llamado a el servicio
+    }*/ //Ya no es neceseario el metodo ya que el servicio se ejecuta en el componente formulario
     /*modificarTitulo(event: Event){
         this.titulo = (<HTMLInputElement>event.target).value;
     }*/

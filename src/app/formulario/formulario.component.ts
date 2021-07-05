@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LoggingService } from '../LoggingService.service';
+import { PersonasService } from '../personas.service';
 import { Persona } from '../personas/persona.model';
 
 @Component({
@@ -10,14 +11,15 @@ import { Persona } from '../personas/persona.model';
 })
 export class FormularioComponent {
   //Evento para propagar al componente padre
-  @Output() personaCreada = new EventEmitter<Persona>();
+  //@Output() personaCreada = new EventEmitter<Persona>();//se comenta ya que se realiza el llamado por medio de servicios
 
   //nombreInput:string = ''; //Usando Event Binding
   //apellidoInput:string = ''; //Usando Event Binding
   @ViewChild('nombreRef') nombreAtributo: ElementRef = new ElementRef(null);
   @ViewChild('apellidoRef') apellidoAtributo: ElementRef = new ElementRef(null);
   
-  constructor(private loggingService:LoggingService) {}
+  constructor(private loggingService:LoggingService,
+              private personasService: PersonasService) {}//Ahora se tiene que importar el servicio
   //addPersona(nombreInput:HTMLInputElement, apellidoInput:HTMLInputElement){//Usando Referencia Local
   addPersona(){
     let persona1 = new Persona(this.nombreAtributo.nativeElement.value,
@@ -25,7 +27,9 @@ export class FormularioComponent {
     //let persona1 = new Persona(nombreInput.value, apellidoInput.value); //Usando Referencia Local
     //let persona1 = new Persona(this.nombreInput, this.apellidoInput); //Usando Event Binding
     //this.personas.push(persona1);
-    this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + ' ' + persona1.apellido);
-    this.personaCreada.emit(persona1);
+    //this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + ' ' + persona1.apellido);
+    //this.personaCreada.emit(persona1);//Linea 30 y 31 se comentan ya que se realiza el llamado por medio de servicios
+    this.loggingService.enviaMensajeAConsola("Se llama a personasService.personaAgregada con la persona: " + persona1.nombre + " " + persona1.apellido);
+    this.personasService.personaAgregada(persona1);//En lugar de las lineas anteriores solo se llama a el servicio
   }
 }
