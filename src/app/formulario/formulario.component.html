@@ -3,16 +3,16 @@
     <form action="" class="row g-2">
       <div class="form-group col-auto form-floating">
         <input type="text" name="nombre" id="nombre" placeholder="Nombre"
-        class="form-control" [(ngModel)] = "nombreInput">
+        class="form-control" #nombreRef><!-- [(ngModel)] = "nombreInput"> Usando Event Binding -->
         <label for="nombre">Nombre</label>
       </div>
       <div class="form-group col-auto form-floating">
         <input type="text" name="apellido" id="apellido" placeholder="Apellido"
-          class="form-control" [(ngModel)] = "apellidoInput">
+          class="form-control" #apellidoRef><!-- [(ngModel)] = "apellidoInput" Usando Event Binding -->
         <label for="apellido">Apellido</label>
       </div>
       <div class="col">
-        <button type="submit" class="btn btn-primary" (click) = "addPersona()">Agregar</button>
+        <button type="submit" class="btn btn-primary" (click) = "addPersona(nombreRef, apellidoRef)">Agregar</button>
       </div>
     </form>
 </div>
