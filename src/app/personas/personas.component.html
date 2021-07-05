@@ -5,8 +5,11 @@
       <!-- <app-persona></app-persona> -->
       <button class="btn btn-primary" [disabled]="deshabilitar"
         (click) = 'agregarPersona()'>Agregar persona</button>
+      <p *ngIf="mostrar; else sinPersona">{{mensaje}} con el titulo de {{titulo}}</p>
+      <ng-template #sinPersona>
+        <p>No se a agregado ninguna persona</p>
+      </ng-template>
       <br/>
-      <p>{{mensaje}}</p>
       <label for="">Titulo persona</label>
       <!-- <input type="text" name="" id="" class="form-control"
         (input) = "modificarTitulo($event)">
