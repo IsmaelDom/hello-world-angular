@@ -22,7 +22,7 @@ export class FormularioComponent {
               private personasService: PersonasService) {
                 this.personasService.saludar.subscribe(
                   (indice: number) => alert("El indice es: " + indice)
-                );
+                );//Se emite el saludo
               }//Ahora se tiene que importar el servicio
   //addPersona(nombreInput:HTMLInputElement, apellidoInput:HTMLInputElement){//Usando Referencia Local
   addPersona(){
