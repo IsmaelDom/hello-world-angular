@@ -19,7 +19,11 @@ export class FormularioComponent {
   @ViewChild('apellidoRef') apellidoAtributo: ElementRef = new ElementRef(null);
   
   constructor(private loggingService:LoggingService,
-              private personasService: PersonasService) {}//Ahora se tiene que importar el servicio
+              private personasService: PersonasService) {
+                this.personasService.saludar.subscribe(
+                  (indice: number) => alert("El indice es: " + indice)
+                );
+              }//Ahora se tiene que importar el servicio
   //addPersona(nombreInput:HTMLInputElement, apellidoInput:HTMLInputElement){//Usando Referencia Local
   addPersona(){
     let persona1 = new Persona(this.nombreAtributo.nativeElement.value,
@@ -28,7 +32,7 @@ export class FormularioComponent {
     //let persona1 = new Persona(this.nombreInput, this.apellidoInput); //Usando Event Binding
     //this.personas.push(persona1);
     //this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + ' ' + persona1.apellido);
-    //this.personaCreada.emit(persona1);//Linea 30 y 31 se comentan ya que se realiza el llamado por medio de servicios
+    //this.personaCreada.emit(persona1);//Linea 34 y 35 se comentan ya que se realiza el llamado por medio de servicios
     this.loggingService.enviaMensajeAConsola("Se llama a personasService.personaAgregada con la persona: " + persona1.nombre + " " + persona1.apellido);
     this.personasService.personaAgregada(persona1);//En lugar de las lineas anteriores solo se llama a el servicio
   }
