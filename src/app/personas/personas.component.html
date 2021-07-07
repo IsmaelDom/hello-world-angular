@@ -23,7 +23,12 @@
       <!-- <input type="text" name="" id="" class="form-control"
         (input) = "modificarTitulo($event)">
         {{titulo}} -->
-      <input type="text" class="form-control" [(ngModel)]="titulo" />
+      <div class="input-group">
+        <div class="input-group-text" id="btnGroupAddon">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="titulo" />
+      </div>
       {{ titulo }}
     </div>
   </div>
