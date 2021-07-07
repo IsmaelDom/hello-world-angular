@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { LoggingService } from "../LoggingService.service";
+import { Router } from "@angular/router";
 import { PersonasService } from "../personas.service";
 import { Persona } from "./persona.model";
 
@@ -23,8 +23,8 @@ export class PersonasComponent implements OnInit {
                         new Persona('Karla', 'Lara')];//Se mueve a el servicio*/
     personas: Persona[] =[];
 
-    constructor(private loggingService: LoggingService,
-                private personasService: PersonasService) {}
+    constructor(private personasService: PersonasService,
+                private router: Router) {}
 
     ngOnInit(): void {
         this.personas = this.personasService.personas;
@@ -35,6 +35,9 @@ export class PersonasComponent implements OnInit {
         this.mensaje = 'Persona agregada';
     }
 
+    agregar(){
+        this.router.navigate(['personas/agregar']);
+    }
     /*personaAgregada(persona: Persona) {
         //this.loggingService.enviaMensajeAConsola("Se agrega al arreglo la persona: " + persona.nombre + " " + persona.apellido);//Se mueve a el servicio
         //this.personas.push(persona);//Se mueve a el servicio
