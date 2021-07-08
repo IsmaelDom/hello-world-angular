@@ -15,10 +15,9 @@ export class FormularioComponent implements OnInit {
   //Evento para propagar al componente padre
   //@Output() personaCreada = new EventEmitter<Persona>();//se comenta ya que se realiza el llamado por medio de servicios
 
-  //nombreInput:string = ''; //Usando Event Binding
-  //apellidoInput:string = ''; //Usando Event Binding
-  @ViewChild('nombreRef') nombreAtributo: ElementRef = new ElementRef(null);
-  @ViewChild('apellidoRef') apellidoAtributo: ElementRef = new ElementRef(null);
+  nombreInput:string = ''; //Usando Event Binding
+  apellidoInput:string = ''; //Usando Event Binding
+  
   index: number = 0;
   modoEdicion: number = 0;
   constructor(private loggingService:LoggingService,
@@ -30,26 +29,19 @@ export class FormularioComponent implements OnInit {
               }//Ahora se tiene que importar el servicio
 
   ngOnInit(): void {
-    /*this.index = this.route.snapshot.params['id'];//debe ser el mismo que el de app-routing
-    if (this.index) {
-      let persona: Persona = this.personasService.encontrarPersona(this.index);
-    }*/
-  }
-
-  ngAfterViewInit() {
     this.index = this.route.snapshot.params['id'];//debe ser el mismo que el de app-routing
     this.modoEdicion = +this.route.snapshot.queryParams['modoEdicion'];//El signo + convierte a entero
     if (this.modoEdicion != null && this.modoEdicion === 1) {
       let persona: Persona = this.personasService.encontrarPersona(this.index);
-      this.nombreAtributo.nativeElement.value = persona.nombre;
-      this.apellidoAtributo.nativeElement.value = persona.apellido;
+      this.nombreInput = persona.nombre;
+      this.apellidoInput = persona.apellido;
     }
   }
 
   //addPersona(nombreInput:HTMLInputElement, apellidoInput:HTMLInputElement){//Usando Referencia Local
   addPersona(){
-    let persona1 = new Persona(this.nombreAtributo.nativeElement.value,
-                              this.apellidoAtributo.nativeElement.value); //Usando Referencia Local con ViewChild
+    let persona1 = new Persona(this.nombreInput,
+                              this.apellidoInput); //Usando Referencia Local con ViewChild
     //let persona1 = new Persona(nombreInput.value, apellidoInput.value); //Usando Referencia Local
     //let persona1 = new Persona(this.nombreInput, this.apellidoInput); //Usando Event Binding
     //this.personas.push(persona1);
@@ -60,8 +52,7 @@ export class FormularioComponent implements OnInit {
   }
 
   onGuardarPersona(){
-    let persona1 = new Persona(this.nombreAtributo.nativeElement.value,
-                              this.apellidoAtributo.nativeElement.value);
+    let persona1 = new Persona(this.nombreInput, this.apellidoInput);
     if (this.modoEdicion != null && this.modoEdicion === 1) {
       this.personasService.modificarPersona(this.index, persona1);
     } else {

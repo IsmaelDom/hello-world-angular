@@ -3,12 +3,12 @@
     <form action="" class="row g-2" #f="ngForm" (ngSubmit)="f.form.valid && onGuardarPersona()">
       <div class="form-group col-auto form-floating">
         <input type="text" name="nombre" id="nombre" placeholder="Nombre"
-        class="form-control" #nombreRef required><!-- [(ngModel)] = "nombreInput"> Usando Event Binding -->
+        class="form-control" [(ngModel)] = "nombreInput" required>
         <label for="nombre">Nombre</label>
       </div>
       <div class="form-group col-auto form-floating">
         <input type="text" name="apellido" id="apellido" placeholder="Apellido"
-          class="form-control" #apellidoRef required><!-- [(ngModel)] = "apellidoInput" Usando Event Binding -->
+          class="form-control" [(ngModel)] = "apellidoInput" required>
         <label for="apellido">Apellido</label>
       </div>
       <div class="col">
@@ -19,7 +19,7 @@
         </button>
         <!--Usando Referencia Local con ViewChild-->
         <!-- (click) = "addPersona(nombreRef, apellidoRef)" Para usar Referencia Local-->
-        <i role="button" *ngIf="index == 0" class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;" (click) = "eliminarPersona()"></i>
+        <i role="button" *ngIf="index != null" class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;" (click) = "eliminarPersona()"></i>
       </div>
     </form>
 </div>
