@@ -20,6 +20,7 @@ export class FormularioComponent implements OnInit {
   @ViewChild('nombreRef') nombreAtributo: ElementRef = new ElementRef(null);
   @ViewChild('apellidoRef') apellidoAtributo: ElementRef = new ElementRef(null);
   index: number = 0;
+  modoEdicion: number = 0;
   constructor(private loggingService:LoggingService,
               private personasService: PersonasService,
               private router: Router, private route: ActivatedRoute) {
@@ -37,7 +38,8 @@ export class FormularioComponent implements OnInit {
 
   ngAfterViewInit() {
     this.index = this.route.snapshot.params['id'];//debe ser el mismo que el de app-routing
-    if (this.index) {
+    this.modoEdicion = +this.route.snapshot.queryParams['modoEdicion'];//El signo + convierte a entero
+    if (this.modoEdicion != null && this.modoEdicion === 1) {
       let persona: Persona = this.personasService.encontrarPersona(this.index);
       this.nombreAtributo.nativeElement.value = persona.nombre;
       this.apellidoAtributo.nativeElement.value = persona.apellido;
@@ -52,7 +54,7 @@ export class FormularioComponent implements OnInit {
     //let persona1 = new Persona(this.nombreInput, this.apellidoInput); //Usando Event Binding
     //this.personas.push(persona1);
     //this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + ' ' + persona1.apellido);
-    //this.personaCreada.emit(persona1);//Linea 51 y 52 se comentan ya que se realiza el llamado por medio de servicios
+    //this.personaCreada.emit(persona1);//Linea 53 y 54 se comentan ya que se realiza el llamado por medio de servicios
     this.loggingService.enviaMensajeAConsola("Se llama a personasService.personaAgregada con la persona: " + persona1.nombre + " " + persona1.apellido);
     this.personasService.personaAgregada(persona1);//En lugar de las lineas anteriores solo se llama a el servicio
   }
@@ -60,7 +62,7 @@ export class FormularioComponent implements OnInit {
   onGuardarPersona(){
     let persona1 = new Persona(this.nombreAtributo.nativeElement.value,
                               this.apellidoAtributo.nativeElement.value);
-    if (this.index) {
+    if (this.modoEdicion != null && this.modoEdicion === 1) {
       this.personasService.modificarPersona(this.index, persona1);
     } else {
       this.personasService.personaAgregada(persona1);

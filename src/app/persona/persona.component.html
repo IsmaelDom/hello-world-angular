@@ -14,7 +14,7 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
       {{ indice + 1 }}.-
-      <a [routerLink]="['/personas', indice]">{{ persona.nombre }} {{ persona.apellido }}</a>
+      <a [routerLink]="['/personas', indice]" [queryParams]="{modoEdicion:'1'}">{{ persona.nombre }} {{ persona.apellido }}</a>
       <button type="submit" class="btn btn-primary" (click)="emitirSaludo()">
         <span class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
       </button>

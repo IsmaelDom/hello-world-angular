@@ -19,7 +19,7 @@
         </button>
         <!--Usando Referencia Local con ViewChild-->
         <!-- (click) = "addPersona(nombreRef, apellidoRef)" Para usar Referencia Local-->
-        <i role="button" *ngIf="index != null && index" class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;" (click) = "eliminarPersona()"></i>
+        <i role="button" *ngIf="index == 0" class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;" (click) = "eliminarPersona()"></i>
       </div>
     </form>
 </div>
