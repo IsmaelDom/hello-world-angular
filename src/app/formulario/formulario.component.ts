@@ -29,11 +29,18 @@ export class FormularioComponent implements OnInit {
               }//Ahora se tiene que importar el servicio
 
   ngOnInit(): void {
+    /*this.index = this.route.snapshot.params['id'];//debe ser el mismo que el de app-routing
+    if (this.index) {
+      let persona: Persona = this.personasService.encontrarPersona(this.index);
+    }*/
+  }
+
+  ngAfterViewInit() {
     this.index = this.route.snapshot.params['id'];//debe ser el mismo que el de app-routing
     if (this.index) {
       let persona: Persona = this.personasService.encontrarPersona(this.index);
-      this.apellidoAtributo.nativeElement = persona.nombre;
-      this.apellidoAtributo.nativeElement = persona.apellido;
+      this.nombreAtributo.nativeElement.value = persona.nombre;
+      this.apellidoAtributo.nativeElement.value = persona.apellido;
     }
   }
 
