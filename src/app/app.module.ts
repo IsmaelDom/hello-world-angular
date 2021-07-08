@@ -12,10 +12,11 @@ import { PersonasService } from './personas.service';
 import { ErrorComponent } from './error/error.component';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PersonaComponent, PersonasComponent, FormularioComponent, ErrorComponent
+    AppComponent, PersonaComponent, PersonasComponent, FormularioComponent, ErrorComponent, LoginComponent
   ],
   imports: [
     BrowserModule,
