@@ -9,10 +9,11 @@ import { PersonasComponent } from './personas/personas.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { LoggingService } from './LoggingService.service';
 import { PersonasService } from './personas.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PersonaComponent, PersonasComponent, FormularioComponent
+    AppComponent, PersonaComponent, PersonasComponent, FormularioComponent, ErrorComponent
   ],
   imports: [
     BrowserModule,
