@@ -43,11 +43,12 @@
   </div>
 </div>
 
-<div class="container">
-  <app-formulario>
+<!-- <div class="container">
+  <app-formulario> -->
     <!-- (personaCreada) = "personaAgregada($event)" Ya no es necesario ya que se realiza el llamado por service -->
-  </app-formulario>
-</div>
+  <!--</app-formulario>
+</div> Se quita ya que se va a usar router-outlet en su lugar-->
+<router-outlet></router-outlet> <!--Con esto se cargan los componentes en una sola vista -->
 
 <div class="container">
   <hr/>

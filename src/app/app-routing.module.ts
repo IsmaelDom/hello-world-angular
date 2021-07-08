@@ -5,10 +5,11 @@ import { PersonasComponent } from './personas/personas.component';
 
 const routes: Routes = [
   {path: '', component: PersonasComponent},
-  {path: 'personas', component: PersonasComponent},
-  {path: 'personas/agregar', component: FormularioComponent},
-  {path: 'personas/:id', component: FormularioComponent},
-];
+  {path: 'personas', component: PersonasComponent, children: [
+    {path: 'agregar', component: FormularioComponent},
+    {path: ':id', component: FormularioComponent}
+  ]}//Se quita personas del path ya que al ser hijas ya lo traen
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
