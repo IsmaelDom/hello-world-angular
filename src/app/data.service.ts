@@ -23,4 +23,14 @@ export class DataService {
                 error => console.log("Error al guardar Personas " + error)
             );
     }
+
+    modificarPersona(index: number, persona: Persona){
+        let url: string;
+        url = 'https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas/' + index + '.json';
+        this.httpClient.put(url, persona)
+            .subscribe(
+                response => console.log("Resultado modificar Persona: " + response),
+                error => console.error("Error al modificar Persona: " + error)
+            )
+    }
 }
