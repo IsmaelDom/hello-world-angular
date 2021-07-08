@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { person } from 'ngx-bootstrap-icons';
+import { DataService } from './data.service';
 import { LoggingService } from './LoggingService.service';
 import { Persona } from './personas/persona.model';
 
@@ -13,11 +14,12 @@ export class PersonasService {
 
   saludar = new EventEmitter<number>();
 
-  constructor(private loggingService: LoggingService) {}
+  constructor(private loggingService: LoggingService, private dataService: DataService) {}
 
   personaAgregada(persona: Persona) {
     this.loggingService.enviaMensajeAConsola("Se agrega persona desde el servicio: " + persona.nombre);
     this.personas.push(persona);
+    this.dataService.guardarPersonas(this.personas);
   }
 
   encontrarPersona(index: number){
