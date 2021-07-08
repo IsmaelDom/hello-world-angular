@@ -1,23 +1,29 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { person } from 'ngx-bootstrap-icons';
 import { DataService } from './data.service';
 import { LoggingService } from './LoggingService.service';
 import { Persona } from './personas/persona.model';
 
 @Injectable()//Se inyecta un servicio
 export class PersonasService {
-  personas: Persona[] = [
-    new Persona('Juan', 'Perez'),
-    new Persona('Laura', 'Juarez'),
-    new Persona('Karla', 'Lara'),
-  ];
+  personas: Persona[] = [];
 
   saludar = new EventEmitter<number>();
 
   constructor(private loggingService: LoggingService, private dataService: DataService) {}
 
+  setPersonas(personas: Persona[]){
+    this.personas = personas;
+  }
+
+  obtenerPersonas(){
+    return this.dataService.cargarPersonas();
+  }
+
   personaAgregada(persona: Persona) {
     this.loggingService.enviaMensajeAConsola("Se agrega persona desde el servicio: " + persona.nombre);
+    if (this.personas == null) {
+      this.personas = [];
+    }
     this.personas.push(persona);
     this.dataService.guardarPersonas(this.personas);
   }

@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Persona } from './personas/persona.model';
 
 @Injectable()
 export class DataService {
     constructor(private httpClient: HttpClient){}
+
+    cargarPersonas(): Observable<Persona[]>{
+        return this.httpClient.get<Persona[]>('https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas.json');
+    }
 
     //Método para guardar personas en base de datos Firebase
     guardarPersonas(personas: Persona[]){
