@@ -52,7 +52,7 @@ export class FormularioComponent implements OnInit {
     //let persona1 = new Persona(this.nombreInput, this.apellidoInput); //Usando Event Binding
     //this.personas.push(persona1);
     //this.loggingService.enviaMensajeAConsola("Enviamos persona: " + persona1.nombre + ' ' + persona1.apellido);
-    //this.personaCreada.emit(persona1);//Linea 38 y 39 se comentan ya que se realiza el llamado por medio de servicios
+    //this.personaCreada.emit(persona1);//Linea 51 y 52 se comentan ya que se realiza el llamado por medio de servicios
     this.loggingService.enviaMensajeAConsola("Se llama a personasService.personaAgregada con la persona: " + persona1.nombre + " " + persona1.apellido);
     this.personasService.personaAgregada(persona1);//En lugar de las lineas anteriores solo se llama a el servicio
   }
@@ -65,6 +65,13 @@ export class FormularioComponent implements OnInit {
     } else {
       this.personasService.personaAgregada(persona1);
     }
-      this.router.navigate(['personas']);
+    this.router.navigate(['personas']);
+  }
+
+  eliminarPersona(){
+    if (this.index != null) {
+      this.personasService.eliminarPersona(this.index);
+    }
+    this.router.navigate(['personas']);
   }
 }
