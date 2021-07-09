@@ -25,4 +25,20 @@ export class LoginService {
     getIdToken(){
         return this.token;
     }
+
+    isAutenticado(){
+        return this.token != '';
+    }
+
+    logout(){
+        firebase.default.auth().signOut()
+                .then(
+                    ()=>{
+                        this.token = '';
+                        this.router.navigate(['login']);
+                    }
+                ).catch(
+                    error => console.log("Error logout: " + error)
+                );
+    }
 }

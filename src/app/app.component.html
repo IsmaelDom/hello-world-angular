@@ -1,1 +1,8 @@
+<div *ngIf="!isAutenticado()" class="container text-center">
+    <a routerLink="/login">Login</a>
+</div>
+
+<div *ngIf="isAutenticado()" class="container text-center">
+    <a href="" (click)="salir()">Salir</a>
+</div>
 <router-outlet></router-outlet> <!--Va a tomar lo que esta en las rutas-->
