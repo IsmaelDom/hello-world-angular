@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
 import { FormularioComponent } from './formulario/formulario.component';
+import { LoginGuardian } from './login/login-guardian.service';
 import { LoginComponent } from './login/login.component';
 import { PersonasComponent } from './personas/personas.component';
 
 const routes: Routes = [
-  {path: '', component: PersonasComponent},
-  {path: 'personas', component: PersonasComponent, children: [
+  {path: '', component: PersonasComponent, canActivate:[LoginGuardian]},
+  {path: 'personas', component: PersonasComponent, canActivate:[LoginGuardian], children: [
     {path: 'agregar', component: FormularioComponent},
     {path: ':id', component: FormularioComponent}
   ]},//Se quita personas del path ya que al ser hijas ya lo traen

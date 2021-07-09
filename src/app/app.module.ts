@@ -14,6 +14,7 @@ import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { LoginGuardian } from './login/login-guardian.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { LoginService } from './login/login.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoggingService, PersonasService, DataService, LoginService],//Si se usa en varios componentes es mejor agregar el proveedor aqui
+  providers: [LoggingService, PersonasService, DataService, LoginService, LoginGuardian],//Si se usa en varios componentes es mejor agregar el proveedor aqui
   bootstrap: [AppComponent]
 })
 export class AppModule { }
