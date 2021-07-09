@@ -17,7 +17,8 @@ export class DataService {
     guardarPersonas(personas: Persona[]){
         //Url de la base de Firebase, al final el nombre del objeto con extensión .json
         //La 1 era vez se usa post para guardar las personas, despues se cambia a put para actualizar las personas y no repetirlas
-        this.httpClient.put('https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas.json', personas)
+        const token = this.loginService.getIdToken();
+        this.httpClient.put('https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas.json?auth=' + token, personas)
             .subscribe(
                 response => {
                     console.log("Resultado guardar Personas " + response);
@@ -28,7 +29,8 @@ export class DataService {
 
     modificarPersona(index: number, persona: Persona){
         let url: string;
-        url = 'https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas/' + index + '.json';
+        const token = this.loginService.getIdToken();
+        url = 'https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas/' + index + '.json?auth=' + token;
         this.httpClient.put(url, persona)
             .subscribe(
                 response => console.log("Resultado modificar Persona: " + response),
@@ -38,7 +40,8 @@ export class DataService {
 
     eliminarPersona(index: number){
         let url: string;
-        url = 'https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas/' + index + '.json';
+        const token = this.loginService.getIdToken();
+        url = 'https://lista-personas-41ae3-default-rtdb.firebaseio.com/personas/' + index + '.json?auth=' + token;
         this.httpClient.delete(url)
             .subscribe(
                 response => console.log("Resultado eliminar Persona: " + response),
